@@ -25,11 +25,16 @@ export const appConfig = {
     }
   },
 
+  webServer: {
+    port: 8099,
+    address: ''
+  },
+
   server: {
-    address: 'localhost',
+    address: '',
     port: 3897,
     protocol: 'build-system-websocket',
-    acceptOrigin: 'http://localhost:8081'
+    acceptOrigin: 'http://localhost:8099'
   },
 
   paths: {

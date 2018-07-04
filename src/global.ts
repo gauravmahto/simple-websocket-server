@@ -12,7 +12,8 @@ require('app-module-path')  // tslint:disable-line
   .addPath(__dirname);
 
 // Create application globals.
-global.APP_ROOT_DIR = __dirname;
+global.APP_ROOT_DIR = path.join(__dirname, '..');
 
-// Create application globals.
-global.DATA_DIR = path.join(global.APP_ROOT_DIR, '..', 'data');
+// Add global path.
+global.DATA_DIR = path.join(global.APP_ROOT_DIR, 'data');
+global.STATIC_DIR = path.join(global.APP_ROOT_DIR, 'client');

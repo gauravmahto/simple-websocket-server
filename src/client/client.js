@@ -2,6 +2,9 @@
  * Copyright 2018 - Author gauravm.git@gmail.com
  */
 
+const wsServerPath = 'ws://ajitvm006:3897';
+const wsProtocol = 'build-system-websocket';
+
 $(() => {
 
   const outputDiv = $('.console-output');
@@ -14,7 +17,6 @@ $(() => {
     const errorElem = $('<span />')
       .addClass('error')
       .html('WebSocket is not supported.');
-
     outputDiv
       .append(errorElem);
 
@@ -24,20 +26,28 @@ $(() => {
 
   let infoElem = $('<span />')
     .addClass('info')
-    .html('Status: Connecting to "ws://localhost:3897"...');
+    .html('Status: Connecting to ' + '"' + wsServerPath + '"...');
   outputDiv
     .append(infoElem);
 
-  const connection = new WebSocket('ws://localhost:3897', 'build-system-websocket');
+  const connection = new WebSocket(wsServerPath, wsProtocol);
 
   connection.onopen = () => {
     // connection is opened and ready to use
     infoElem = $('<span />')
       .addClass('info')
       .html('Status: Connected.');
-
     outputDiv
       .append(infoElem);
+
+    infoElem = $('<span />')
+      .addClass('info')
+      .html('Status: Starting operations...');
+    outputDiv
+      .append(infoElem);
+
+    // Start the copy and install operation.
+    connection.send('start-copy-install');
 
   };
 
@@ -45,10 +55,23 @@ $(() => {
     // an error occurred when sending/receiving data
     const errorElem = $('<span />')
       .addClass('error')
-      .html('WebSocket error: ' + error);
-
+      .html('WebSocket: Some error happened.');
     outputDiv
       .append(errorElem);
+
+    console.log(error);
+
+  };
+
+  connection.onclose = (reason) => {
+
+    infoElem = $('<span />')
+      .addClass('info')
+      .html('Status: Disconnected.');
+    outputDiv
+      .append(infoElem);
+
+    console.log(reason);
 
   };
 
@@ -57,22 +80,39 @@ $(() => {
     let jsonData;
 
     try {
+
       jsonData = JSON.parse(message.data);
+
     } catch (e) {
+
       console.log('This doesn\'t look like a valid JSON: ',
         message.data);
 
       return;
+
     }
 
     if (typeof jsonData !== 'undefined') {
 
-      const span = $('<span />')
-        .addClass('output-line')
-        .html(jsonData);
+      let span = '';
+
+      if (typeof jsonData.data !== 'undefined') {
+
+        span = $('<span />')
+          .addClass('result')
+          .html(jsonData.data);
+
+      } else if (typeof jsonData.error !== 'undefined') {
+
+        span = $('<span />')
+          .addClass('error')
+          .html(jsonData.error);
+
+      }
 
       // Add the output.
-      outputDiv.append(span);
+      outputDiv
+        .append(span);
 
     }
 
