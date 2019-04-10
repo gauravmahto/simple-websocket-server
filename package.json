@@ -21,19 +21,19 @@
   "homepage": "https://github.com/gauravmahto/simple-websocket-server#readme",
   "dependencies": {
     "app-module-path": "2.2.0",
-    "express": "4.16.3",
-    "moment": "2.22.2",
-    "websocket": "1.0.26",
+    "express": "4.16.4",
+    "moment": "2.24.0",
+    "websocket": "1.0.28",
     "winston": "2.4.1",
     "winston-daily-rotate-file": "3.0.0"
   },
   "devDependencies": {
-    "@types/express": "4.16.0",
-    "@types/node": "10.5.1",
-    "@types/websocket": "0.0.39",
+    "@types/express": "4.16.1",
+    "@types/node": "^10.14.4",
+    "@types/websocket": "0.0.40",
     "@types/winston": "2.3.9",
     "cpx": "1.5.0",
-    "typescript": "2.9.2",
-    "tslint": "5.10.0"
+    "typescript": "3.4.3",
+    "tslint": "5.15.0"
   }
 }

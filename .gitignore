@@ -3,3 +3,4 @@
 
 # Ignore ./bin dir
 bin
+.history

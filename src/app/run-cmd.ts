@@ -1,5 +1,5 @@
-/**
- * Copyright 2018 - Author gauravm.git@gmail.com
+/*
+ * Copyright 2019 - Author gauravm.git@gmail.com
  */
 
 import { spawn } from 'child_process';
@@ -17,11 +17,11 @@ export function runCommand({
   onExit = logger.info,
   onResponse = logger.info
 }: {
-    cmd: string;
-    onError: (...args: string[]) => void;
-    onExit: (code: any) => void;
-    onResponse: (...args: string[]) => void;
-  }, ...args: string[]) {
+  cmd: string;
+  onError: (...args: string[]) => void;
+  onExit: (code: any) => void;
+  onResponse: (...args: string[]) => void;
+}, ...args: string[]) {
 
   try {
 
@@ -31,7 +31,7 @@ export function runCommand({
 
     if (isWinPlatform) {
 
-      spawnedChild = spawn('cmd.exe', ['/c', cmdWithArgs]);
+      spawnedChild = spawn('cmd.exe', [ '/c', cmdWithArgs ]);
 
     } else {
 
