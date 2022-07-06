@@ -22,7 +22,7 @@
   "dependencies": {
     "app-module-path": "2.2.0",
     "express": "4.16.4",
-    "moment": "2.24.0",
+    "moment": "2.29.4",
     "websocket": "1.0.28",
     "winston": "2.4.1",
     "winston-daily-rotate-file": "3.0.0"
