@@ -21,7 +21,7 @@
   "homepage": "https://github.com/gauravmahto/simple-websocket-server#readme",
   "dependencies": {
     "app-module-path": "2.2.0",
-    "express": "4.16.4",
+    "express": "4.18.2",
     "moment": "2.24.0",
     "websocket": "1.0.28",
     "winston": "2.4.1",
